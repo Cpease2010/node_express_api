@@ -1,11 +1,16 @@
 # Node Express Back
 
+## Tech Stack
+- [x] Node
+- [ ] Typescript
+- [x] Jest
+- [ ] AWS Lambda
 ## Features
-- [x] Uses Node
-- [ ] Tests
+- [x] Expose endpoint accepting params: `user` && `repo`
+- [?] Tests
   - [ ] Unit
   - [ ] Integration
-  - [ ] Something Else
+  - [x] Something Else (?API?)
 - [ ] Consumes [GitHub API](https://developer.github.com/v3)
 - [ ] Returns PR Data: 
   ```json 
