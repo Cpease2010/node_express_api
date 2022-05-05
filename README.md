@@ -1,7 +1,7 @@
 # Node Express Back
 
 ## Features
-- [ ] Uses Node
+- [x] Uses Node
 - [ ] Tests
   - [ ] Unit
   - [ ] Integration
