@@ -2,7 +2,7 @@ const buildUrl = require('../Helpers/buildUrl.js')
 const axios = require('axios')
 
 const githubService = {
-  getPullRequestInformation: (params) => {
+  getRepositoryInformation: (params) => {
     return axios.get(buildUrl(params))
       .then(response => response.data)
   }

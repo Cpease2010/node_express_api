@@ -1,11 +1,23 @@
 const express = require('express')
 const { badPathParameters } = require('./Helpers/badRequest')
-const { getPullRequestInformation } = require('./Services/githubService')
+const { getRepositoryInformation } = require('./Services/githubService')
 const app = express()
 
 app.get('/:githubUser/:githubRepository', (req, res) => {
 
-  getPullRequestInformation(req.params)
+  getRepositoryInformation(req.params)
+    .then(data => {
+      let pullRequests = []
+      data.forEach(prData => {
+        pullRequests.push({
+          id: prData['id'],
+          number: prData['number'],
+          title: prData['title'],
+          author: prData['user']['login']
+        })
+      })
+      return pullRequests
+    })
     .then(data => res.send({ data }))
 })
 
