@@ -8,10 +8,10 @@
 ## Features
 - [x] Expose endpoint accepting params: `user` && `repo`
 - [?] Tests
-  - [ ] Unit
+  - [x] Unit
   - [ ] Integration
   - [x] Something Else (?API?)
-- [ ] Consumes [GitHub API](https://developer.github.com/v3)
+- [x] Consumes [GitHub API](https://developer.github.com/v3)
 - [ ] Returns PR Data: 
   ```json 
   [
