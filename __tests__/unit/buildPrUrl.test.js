@@ -1,5 +1,5 @@
 const assert = require("assert")
-const buildPrUrl = require("../Helpers/buildPrUrl")
+const buildPrUrl = require("../../Helpers/buildPrUrl")
 
 describe('buildPrUrl()', () => {
   test('Should return an accurate URL for pull requests', () => {

@@ -1,5 +1,5 @@
 const express = require('express')
-const badRequest = require('./Helpers/badRequest')
+const {badRequest} = require('./Helpers/badRequest')
 const { getPullRequests, getCommits } = require('./Services/githubService')
 
 const app = express()

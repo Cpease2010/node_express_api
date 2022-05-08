@@ -3,4 +3,4 @@ const badRequestMessage = 'Request Failed! Please check your path parameters and
 const badRequest = (req, res) =>
   res.status(400).send({ "Error Message": badRequestMessage, "Parameters": req.params })
 
-module.exports = badRequest
+module.exports = { badRequest, badRequestMessage }
