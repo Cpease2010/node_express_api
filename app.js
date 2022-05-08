@@ -1,20 +1,19 @@
-const { SlowBuffer } = require('buffer')
 const express = require('express')
-const { badPathParameters } = require('./Helpers/badRequest')
+const badRequest = require('./Helpers/badRequest')
 const { getPullRequests, getCommits } = require('./Services/githubService')
 
 const app = express()
 
 app.get('/:githubUser/:githubRepository', (req, res) => {
-
   getPullRequests(req.params)
     .then(pullRequests => getCommits(pullRequests))
     .then(prResponse => res.send(prResponse))
-    .catch(err => res.send(err.message))
+    .catch(err => {
+      console.error({ Error: err.message })
+      badRequest(req, res)
+    })
 })
 
-app.get('*', (req, res) => {
-  res.status(400).send(badPathParameters)
-})
+app.get('*', badRequest)
 
 module.exports = app

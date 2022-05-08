@@ -1,4 +1,5 @@
 const axios = require('axios')
+const buildPrlist = require('../Helpers/buildPrList')
 const pullRequestsUrl = require('../Helpers/urls')
 
 const getPullRequests = (params) =>
@@ -6,29 +7,15 @@ const getPullRequests = (params) =>
     .then(response => response.data)
 
 const getCommits = async (pullRequests) => {
-  let prList = []
-  let prPromises = []
+  let commitPromises = []
 
   pullRequests.forEach(pr => {
-    prPromises.push(axios.get(pr['commits_url']))
+    commitPromises.push(axios.get(pr['commits_url']))
   })
 
-  let prData = await Promise.all(prPromises)
-  pullRequests.forEach(pr => {
-    let prObject = {
-      id: pr['id'],
-      number: pr['number'],
-      title: pr['title'],
-      author: pr['user']['login']
-    }
-    prList.push(prObject)
-  })
+  let commits = await Promise.all(commitPromises)
 
-  prData.forEach(({ data }, i) => {
-    prList[i]['commit'] = data.length
-  });
-  
-  return prList
+  return buildPrlist(pullRequests, commits)
 }
 
 module.exports = { getPullRequests, getCommits }
