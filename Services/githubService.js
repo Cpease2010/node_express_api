@@ -1,9 +1,9 @@
 const axios = require('axios')
 const buildPrlist = require('../Helpers/buildPrList')
-const pullRequestsUrl = require('../Helpers/urls')
+const buildPrUrl = require('../Helpers/buildPrUrl')
 
 const getPullRequests = (params) =>
-  axios.get(pullRequestsUrl(params))
+  axios.get(buildPrUrl(params))
     .then(response => response.data)
 
 const getCommits = async (pullRequests) => {

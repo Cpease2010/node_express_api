@@ -1,4 +1,4 @@
-const buildPrlist = (pullRequests, prData) => {
+const buildPrlist = (pullRequests, commits) => {
 
   let prList = []
   pullRequests.forEach((pr,i) => {
@@ -8,7 +8,7 @@ const buildPrlist = (pullRequests, prData) => {
       number: pr['number'],
       title: pr['title'],
       author: pr['user']['login'],
-      commit: prData[i]['data'].length
+      commit_count: commits[i]['data'].length
     }
     prList.push(prObject)
   })
