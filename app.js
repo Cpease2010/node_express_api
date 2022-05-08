@@ -1,24 +1,16 @@
+const { SlowBuffer } = require('buffer')
 const express = require('express')
 const { badPathParameters } = require('./Helpers/badRequest')
-const { getRepositoryInformation } = require('./Services/githubService')
+const { getPullRequests, getCommits } = require('./Services/githubService')
+
 const app = express()
 
 app.get('/:githubUser/:githubRepository', (req, res) => {
 
-  getRepositoryInformation(req.params)
-    .then(data => {
-      let pullRequests = []
-      data.forEach(prData => {
-        pullRequests.push({
-          id: prData['id'],
-          number: prData['number'],
-          title: prData['title'],
-          author: prData['user']['login']
-        })
-      })
-      return pullRequests
-    })
-    .then(data => res.send({ data }))
+  getPullRequests(req.params)
+    .then(pullRequests => getCommits(req.params, pullRequests))
+    .then(prResponse => res.send(prResponse))
+    .catch(err => res.send({"Error Message": err.message}))
 })
 
 // TODO: Handle 404 from github
