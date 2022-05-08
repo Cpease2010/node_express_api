@@ -1,16 +1,16 @@
 const axios = require('axios')
-const { pullRequestsUrl, pullRequestCommitsUrl } = require('../Helpers/urls')
+const pullRequestsUrl = require('../Helpers/urls')
 
 const getPullRequests = (params) =>
   axios.get(pullRequestsUrl(params))
     .then(response => response.data)
 
-const getCommits = async (params, pullRequests) => {
+const getCommits = async (pullRequests) => {
   let prList = []
   let prPromises = []
 
   pullRequests.forEach(pr => {
-    prPromises.push(axios.get(pullRequestCommitsUrl(params, pr['number'])))
+    prPromises.push(axios.get(pr['commits_url']))
   })
 
   let prData = await Promise.all(prPromises)

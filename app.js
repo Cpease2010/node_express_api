@@ -8,12 +8,10 @@ const app = express()
 app.get('/:githubUser/:githubRepository', (req, res) => {
 
   getPullRequests(req.params)
-    .then(pullRequests => getCommits(req.params, pullRequests))
+    .then(pullRequests => getCommits(pullRequests))
     .then(prResponse => res.send(prResponse))
-    .catch(err => res.send({"Error Message": err.message}))
+    .catch(err => res.send(err.message))
 })
-
-// TODO: Handle 404 from github
 
 app.get('*', (req, res) => {
   res.status(400).send(badPathParameters)
