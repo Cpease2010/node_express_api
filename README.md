@@ -12,7 +12,7 @@
   - [ ] Integration
   - [x] Something Else (?API?)
 - [x] Consumes [GitHub API](https://developer.github.com/v3)
-- [ ] Returns PR Data: 
+- [x] Returns PR Data: 
   ```json 
   [
     {
@@ -24,5 +24,12 @@
     }
   ]
   ```
-- [ ] DO NOT USE https://github.com/octokit
+- [x] DO NOT USE https://github.com/octokit
 - [ ] No Smells 👃🏾
+
+## Errors:
+###Check Your Internet
+```
+Error:'getaddrinfo ENOTFOUND api.github.com'
+
+```
