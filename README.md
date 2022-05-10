@@ -1,4 +1,4 @@
-# Node Express Back
+# Node Express API
 
 ## Quickstart
 
